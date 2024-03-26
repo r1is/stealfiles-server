@@ -4,6 +4,7 @@ import (
 	"crypto/cipher"
 	"crypto/rand"
 	"encoding/hex"
+	"errors"
 	"io"
 
 	"github.com/emmansun/gmsm/padding"
@@ -24,7 +25,7 @@ func Sm4_d(_key string, _ciphertext string) (string, error) {
 	// The IV needs to be unique, but not secure. Therefore it's common to
 	// include it at the beginning of the ciphertext.
 	if len(ciphertext) < sm4.BlockSize {
-		panic("ciphertext too short")
+		return "", errors.New("ciphertext too short")
 	}
 	iv := ciphertext[:sm4.BlockSize]
 	// fmt.Println("iv:", iv)
