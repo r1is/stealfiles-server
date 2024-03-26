@@ -1,0 +1,11 @@
+#!/bin/bash
+# scf_bootstrap
+export TOTPKEY="123123123123123123123"
+export SECRETID="SecretID"
+export SECRETKEY="SecretKEY"
+export REGION="ap-guangzhou"
+export BUCKET="scf-1250000000"
+export APPID="1250000000"
+export OSSFILEPATH="/xxxx/*"
+
+./main
