@@ -24,7 +24,7 @@ type Msgdata struct{}
 func (m Msgdata) GetMsg(ctx *gin.Context) {
 	defer func() {
 		if err := recover(); err != nil {
-			ctx.JSON(http.StatusOK, Resp{Code: -1, Msg: "系统500了..."})
+			ctx.JSON(http.StatusOK, Resp{Code: -1, Msg: fmt.Sprintf("系统500了...,%v", err)})
 		}
 	}()
 
@@ -43,7 +43,7 @@ func (m Msgdata) GetMsg(ctx *gin.Context) {
 	timeCode, err := utils.Sm4_d(common.ContectKey, req.Code)
 	if err != nil {
 		resp.Code = -1
-		resp.Msg = "decrypt error ..."
+		resp.Msg = fmt.Sprintf("decrypt error: %v", err)
 		ctx.JSON(http.StatusOK, resp)
 		return
 	}
